@@ -1,7 +1,11 @@
-<p>hello</p>
+<h1>Billboard</h1>
 
 <div class="row" *ngIf="movies.length > 0">
-  <div class="col">
-    <app-slideshow [movies]="movies">s</app-slideshow>
-  </div>
+    <div class="col">
+        <app-slideshow [movies]="movies">s</app-slideshow>
+    </div>
 </div>
+
+<h2 class="mt-5">Films</h2>
+
+<app-films-poster-grid [movies]="movies" *ngIf="movies.length > 0"></app-films-poster-grid>
