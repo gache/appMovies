@@ -1,23 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import {MovieService} from "../../services/movie.service";
-import {Movie, Result} from "../../interface/movies";
+import { Component, HostListener, OnInit } from '@angular/core';
+import { MovieService } from "../../services/movie.service";
+import { Movie, Result } from "../../interface/movies";
 
-@Component({
+@Component( {
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
-})
+} )
 export class HomeComponent implements OnInit {
 
-  public  movies : Result[] = [];
+  public movies: Result[] = [];
+  @HostListener( 'window:scroll', ['$event'] )
 
-  constructor(private movieService:MovieService) { }
+  onScrolle () {
+    const pos = ( document.documentElement.scrollTop || document.body.scrollTop );
+    const max = ( document.documentElement.scrollHeight || document.body.scrollHeight );
+    if ( pos > max ) {
 
-  ngOnInit(): void {
+    }
+
+    console.log( pos );
+    console.log( max );
+
+
+  }
+  constructor( private movieService: MovieService ) { }
+
+  ngOnInit (): void {
     this.movieService.getMovies().subscribe( resp => {
-      console.log(resp);
+      console.log( resp );
       this.movies = resp.results;
-    });
+    } );
   }
 
 }
